@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRAPNI || TRAPNI</title>
+<style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+      position: relative;
+      height: 100vh;
+    }
+
+    #logo-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2; /* Set a higher z-index for the logo */
+    }
+
+    #logo {
+      max-width: 100%; /* Set your logo width */
+      height: auto;
+    }
+
+    .button-container {
+      position: absolute;
+      top: 60%; /* Adjust the percentage to control the distance from the top */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      z-index: 2; /* Set a higher z-index for the buttons */
+    }
+
+    .button:hover{
+      margin: 90px 10px;
+      padding: 10px 20px;
+      background-color: white;
+      color: #000;
+      text-decoration: none;
+      font-size: 18px;
+      border: 3px solid #48fb00;
+
+      transition: 0.3s ease-in-out;
+    }
+
+    .button {
+      margin: 90px 10px;
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      border: 3px solid white;
+
+    }
+
+    .random-div-pink {
+      position: absolute;
+      border: solid 2px 	#fd01fe;
+      width: 100px;
+      height: 100px;
+      z-index: 1; /* Set a lower z-index for the random divs */
+    }
+
+    .random-div-green {
+      position: absolute;
+      border: solid 2px #48fb00;
+      width: 100px;
+      height: 100px;
+      z-index: 1; /* Set a lower z-index for the random divs */
+    }
+
+    .random-div-white {
+      position: absolute;
+      border: solid 2px white;
+      width: 100px;
+      height: 100px;
+      z-index: 1; /* Set a lower z-index for the random divs */
+    }
+
+    .random-div-red {
+      position: absolute;
+      border: solid 2px red;
+      width: 100px;
+      height: 100px;
+      z-index: 1; /* Set a lower z-index for the random divs */
+    }
+
+    .random-div-blue {
+      position: absolute;
+      border: solid 2px #01ffff;
+      width: 100px;
+      height: 100px;
+      z-index: 1; /* Set a lower z-index for the random divs */
+    }
+
+    .fade-out{
+      opacity: 0;
+      transition: 0.5s ease-in-out;
+    }
+
+    .fade-out a{
+      pointer-events: none;
+    }
+
+    @media only screen and (max-width: 600px) {
+      /* Adjust styles for screens with a maximum width of 600 pixels */
+      
+      #logo {
+        max-width: 100%;
+      }
+
+      .button {
+        padding: 8px 16px;
+        font-size: 16px;
+      }
+
+      .random-div {
+        width: 80px;
+        height: 80px;
+        margin: 5px;
+      }
+
+      body{
+        overflow: hidden;
+      }
+    }
+  </style>
+  <title>Your Website</title>
+</head>
+
+<body>
+
+  <div id="logo-container">
+    <img id="logo" src="{%static 'images/logo-trapni.png'%}" alt="Your Logo">
+  </div>
+  <div class="button-container">
+    <a href="{% url 'store' %}" class="fadeButton button">Store</a>
+    <a href="{% url 'event' %}" class="fadeButton button">Events</a>
+  </div>
+
+
+  <script>
+    // Get all elements with the class "fadeButton"
+    const fadeButtons = document.querySelectorAll('.fadeButton');
+
+    fadeButtons.forEach(button => {
+      // Attach click event listener to each button
+      button.addEventListener('click', function(event) {
+        fadeOutAndRedirect(event, this.href);
+      });
+    });
+
+    function fadeOutAndRedirect(event, destination) {
+      event.preventDefault(); // Prevent the default anchor behavior (page refresh)
+
+      const body = document.body;
+
+      // Add the 'fade-out' class to trigger the fade-out effect
+      body.classList.add('fade-out');
+
+      // After a short delay, redirect
+      setTimeout(() => {
+        window.location.href = destination;  // Redirect to the specified destination URL
+      }, 300); // Adjust the delay time (in milliseconds) to match the transition duration
+
+      // Remove the 'fade-out' class after an additional delay
+      setTimeout(() => {
+        body.classList.remove('fade-out');
+      }, 500); // Adjust the delay as needed
+    }
+  </script>
+
+<!---------------------------------------------NE DIRAJ-------------------------------------------------------------------------------------->
+
+  <script>
+    function getRandomPosition() {
+      const bodyWidth = document.body.clientWidth;
+      const bodyHeight = document.body.clientHeight;
+
+      const randomLeft = Math.floor(Math.random() * (bodyWidth - 100));
+      const randomTop = Math.floor(Math.random() * (bodyHeight - 100));
+
+      return { top: randomTop, left: randomLeft };
+    }
+
+    function createRandomDiv() {
+      const randomDiv = document.createElement('div');
+      randomDiv.className = 'random-div-pink';
+
+      const position = getRandomPosition();
+      randomDiv.style.top = position.top + 'px';
+      randomDiv.style.left = position.left + 'px';
+
+      document.body.appendChild(randomDiv);
+    }
+
+
+    for (let i = 0; i < 22; i++) {
+      createRandomDiv();
+    }
+  </script>
+
+<script>
+  function getRandomPosition() {
+    const bodyWidth = document.body.clientWidth;
+    const bodyHeight = document.body.clientHeight;
+
+    const randomLeft = Math.floor(Math.random() * (bodyWidth - 100));
+    const randomTop = Math.floor(Math.random() * (bodyHeight - 100));
+
+    return { top: randomTop, left: randomLeft };
+  }
+
+  function createRandomDiv() {
+    const randomDiv = document.createElement('div');
+    randomDiv.className = 'random-div-green';
+
+    const position = getRandomPosition();
+    randomDiv.style.top = position.top + 'px';
+    randomDiv.style.left = position.left + 'px';
+
+    document.body.appendChild(randomDiv);
+  }
+
+
+  for (let i = 0; i < 22; i++) {
+    createRandomDiv();
+  }
+</script>
+
+<script>
+  function getRandomPosition() {
+    const bodyWidth = document.body.clientWidth;
+    const bodyHeight = document.body.clientHeight;
+
+    const randomLeft = Math.floor(Math.random() * (bodyWidth - 100));
+    const randomTop = Math.floor(Math.random() * (bodyHeight - 100));
+
+    return { top: randomTop, left: randomLeft };
+  }
+
+  function createRandomDiv() {
+    const randomDiv = document.createElement('div');
+    randomDiv.className = 'random-div-white';
+
+    const position = getRandomPosition();
+    randomDiv.style.top = position.top + 'px';
+    randomDiv.style.left = position.left + 'px';
+
+    document.body.appendChild(randomDiv);
+  }
+
+
+  for (let i = 0; i < 12; i++) {
+    createRandomDiv();
+  }
+</script>
+
+<script>
+  function getRandomPosition() {
+    const bodyWidth = document.body.clientWidth;
+    const bodyHeight = document.body.clientHeight;
+
+    const randomLeft = Math.floor(Math.random() * (bodyWidth - 100));
+    const randomTop = Math.floor(Math.random() * (bodyHeight - 100));
+
+    return { top: randomTop, left: randomLeft };
+  }
+
+  function createRandomDiv() {
+    const randomDiv = document.createElement('div');
+    randomDiv.className = 'random-div-red';
+
+    const position = getRandomPosition();
+    randomDiv.style.top = position.top + 'px';
+    randomDiv.style.left = position.left + 'px';
+
+    document.body.appendChild(randomDiv);
+  }
+
+
+  for (let i = 0; i < 12; i++) {
+    createRandomDiv();
+  }
+</script>
+*/
+<script>
+  function getRandomPosition() {
+    const bodyWidth = document.body.clientWidth;
+    const bodyHeight = document.body.clientHeight;
+
+    const randomLeft = Math.floor(Math.random() * (bodyWidth - 100));
+    const randomTop = Math.floor(Math.random() * (bodyHeight - 100));
+
+    return { top: randomTop, left: randomLeft };
+  }
+
+  function createRandomDiv() {
+    const randomDiv = document.createElement('div');
+    randomDiv.className = 'random-div-blue';
+
+
+    const position = getRandomPosition();
+    randomDiv.style.top = position.top + 'px';
+    randomDiv.style.left = position.left + 'px';
+
+    document.body.appendChild(randomDiv);
+  }
+
+
+  for (let i = 0; i < 12; i++) {
+    createRandomDiv();
+  }
+</script>
+</body>
+</html>

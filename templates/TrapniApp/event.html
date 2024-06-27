@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<title>TRAPNI || Event</title>
+
+{%load static%}
+<html lang="en">
+<head>
+    <script>
+
+        const countDownDate = new Date("Jan 1, 2025 00:00:00").getTime();
+        const x = setInterval(function() {
+
+          const now = new Date().getTime();
+
+          const distance = countDownDate - now;
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "EXPIRED";
+          }
+        }, 1000);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('video');
+            video.play();
+        });
+      </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/main.css'%}">
+    <style>
+        body {
+            background-image: url("{% static 'images/background-forest.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+
+        .btn-event{
+            border: 1px solid white;
+            border-radius: 0;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-event:hover{
+            border: 1px solid;
+            border-color:	#31c110;
+            color: white;
+            background-color: black;
+            text-decoration: none;
+            transition: 0.2s ease-in-out;
+        }
+
+        #video{
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        .video-container{
+            margin-top: 60px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        h1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+        }
+
+    @media only screen and (max-width: 600px) {
+      
+        .btn-event{
+            border: 1px solid white;
+            border-radius: 0;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-event:hover{
+            border: 1px solid;
+            border-color:	#31c110;
+            color: white;
+            background-color: black;
+            text-decoration: none;
+            transition: 0.2s ease-in-out;
+        }
+
+        #video{
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .video-container{
+            margin-top: 120px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        h1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+        }
+    }
+    </style>
+</head>
+<body>
+<br>
+    <a class="btn btn-outline-light btn-event" href="{% url 'store' %}">&#x2190; Store</a>
+    <div class="video-container">    
+        <video controls controlsList="nodownload" src="{%static 'video/demo-video.mp4'%}" id="video" autoplay></video>
+    </div>
+
+    <h1 id="countdown"></h1>
+
+
+
+</body>
+</html>
